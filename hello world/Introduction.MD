@@ -11,3 +11,7 @@ Anything or any application that sends a message is called Producer.
 A queue can be understood as as post box in RabbitMQ, as messages flow between applicatio and messaging queue, these are stored inside the Queue.
 
 #### Many Producers can send messages to one queue and many consumers can take data from one Queue.
+
+### Consumer
+Anything that waits to receive a message is called Consumer.
+
