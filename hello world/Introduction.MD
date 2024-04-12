@@ -15,3 +15,11 @@ A queue can be understood as as post box in RabbitMQ, as messages flow between a
 ### Consumer
 Anything that waits to receive a message is called Consumer.
 
+## Example
+In this Node.JS example we have followed the following steps.
+1. Installed the RabbitMQ Image and ran it at localhost with the following command:
+    `docker run -d --hostname my-rabbit --name some-rabbit -p 5672:5672 rabbitmq:3`
+Here the name of the container is `some-rabbit` and it's port 5672 is exposed on external port of 5672.
+2. Installed the `amqplib` node.js library which is a client to start working with RabbitMQ in node.js.
+3. Created a sender file to send message to a simple queue.
+4. Created a receiver file to receive message from a queue, sended by the sender.
