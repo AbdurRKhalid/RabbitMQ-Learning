@@ -19,3 +19,10 @@ Now, here comes another question, let's say that the message queue is being re-s
 
 `channel.assertQueue('hello', {durable: true});`
  
+
+## Fair Dispatch (Prefetching)
+Default behavior of RabbitMQ is that it distributes the messages or tasks evenly to consumers, but we do not want to make one consumer do all the work and other sits idle, we can make sure that each consumer is getting one task maximum at a time by adding the following line of code.
+
+`channel.prefetch(1);`
+
+This will make sure that each consumer is getting only 1 task or message at a time.
