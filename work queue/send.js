@@ -8,8 +8,8 @@ amqp.connect('amqp://localhost', function (error0, connection) {
         if (error1) {
             throw error1;
         }
-        var queue = 'hello';
-        var msg = 'Hello world';
+        var queue = 'task_queue';
+        var msg = process.argv.slice(2).join(' ') || "Hello World!";
 
         channel.assertQueue(queue, {
             durable: false
