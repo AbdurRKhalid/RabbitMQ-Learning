@@ -10,3 +10,9 @@ It is important to know that in normal conditions, it is quite possible that the
 The following line need to be added to make sure that acknowledgement is set properly.
 
 `{noAck: false}`
+
+## Message Durability
+Now, here comes another question, let's say that the message queue is being re-started, then what will happen, however in normal conditions everything will be gone, but we do not want that. So, be safe in such condition we need to make sure that the queue is durable and we can do that by adding the following line in code in channel code.
+
+`channel.assertQueue('hello', {durable: true});`
+ 
