@@ -1,0 +1,18 @@
+{
+  "name": "rabbit-mq-work-queue",
+  "version": "1.0.0",
+  "description": "Understanding the working of Work Queue of Rabbit MQ.",
+  "main": "receive.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node.js",
+    "rabbitmq"
+  ],
+  "author": "Abdur Rehman Khalid",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.4"
+  }
+}
