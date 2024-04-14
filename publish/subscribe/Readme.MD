@@ -19,3 +19,10 @@ We will be focusing on the last one which is 'Fanout'. This type of exchange wil
 ## Temporary queues
 The RabbitMQ has a default queue and it is called ''. Yes, that is true and it is called the empty string queue and we can use this as following:
 `channel.assertQueue('', {exclusive: true});`
+
+## Bindings
+Till now, we have created a producer, consumers and exchanges, and we have created a fanout type of exchange, now we have to create a relationship between queue and exchange is called _bindings_.
+
+`channel.bindQueue(queue_name, 'logs', '');`
+
+Here the name of the exchange is 'logs'.
