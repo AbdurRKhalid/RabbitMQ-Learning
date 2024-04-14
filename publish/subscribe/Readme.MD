@@ -15,3 +15,7 @@ We have multiple types of Exchanges, and selection depends upon the purpose of u
 4. Fanout
 
 We will be focusing on the last one which is 'Fanout'. This type of exchange will simply forward messages it received to all queues know to it.
+
+## Temporary queues
+The RabbitMQ has a default queue and it is called ''. Yes, that is true and it is called the empty string queue and we can use this as following:
+`channel.assertQueue('', {exclusive: true});`
