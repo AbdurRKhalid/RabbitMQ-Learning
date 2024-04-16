@@ -1,0 +1,18 @@
+{
+  "name": "rabbitmq-routing",
+  "version": "1.0.0",
+  "description": "This is the basic project to illustrate the routing in rabbit-mq.",
+  "main": "emit_log_direct.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node.js",
+    "rabbitmq"
+  ],
+  "author": "Abdur Rehman Khalid",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.4"
+  }
+}
