@@ -1,0 +1,2 @@
+## Routing an Introduction
+We have seen prviously that, we can have an exchange and we can send the messages to a consumer by the means of a Queue with the help of Exchange, and we have also seen different examples of the the exchanges as well, for example fanout exchange that just broadcast the messages to all queues. We have also seen the example of Bindings, and we also know that Bindings are the example of a relation between Exchange and Queue.
