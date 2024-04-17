@@ -1,6 +1,13 @@
 
 var amqp = require('amqplib/callback_api');
 
+var args = process.argv.slice(2);
+
+if (args.length == 0) {
+    console.log("Usage: rpc_client.js num");
+    process.exit(1);
+}
+
 amqp.connect('amqp://localhost', function (error0, connection) {
     if (error0) {
         throw error0;
@@ -9,33 +16,40 @@ amqp.connect('amqp://localhost', function (error0, connection) {
         if (error1) {
             throw error1;
         }
-        var queue = 'rpc_queue';
+        channel.assertQueue('', {
+            exclusive: true
+        }, function (error2, q) {
+            if (error2) {
+                throw error2;
+            }
+            var correlationId = generateUuid();
+            var num = parseInt(args[0]);
 
-        channel.assertQueue(queue, {
-            durable: false
-        });
-        channel.prefetch(1);
-        console.log(' [x] Awaiting RPC requests');
-        channel.consume(queue, function reply(msg) {
-            var n = parseInt(msg.content.toString());
+            console.log(' [x] Requesting fib(%d)', num);
 
-            console.log(" [.] fib(%d)", n);
-
-            var r = fibonacci(n);
-
-            channel.sendToQueue(msg.properties.replyTo,
-                Buffer.from(r.toString()), {
-                correlationId: msg.properties.correlationId
+            channel.consume(q.queue, function (msg) {
+                if (msg.properties.correlationId == correlationId) {
+                    console.log(' [.] Got %s', msg.content.toString());
+                    setTimeout(function () {
+                        connection.close();
+                        process.exit(0)
+                    }, 500);
+                }
+            }, {
+                noAck: true
             });
 
-            channel.ack(msg);
+            channel.sendToQueue('rpc_queue',
+                Buffer.from(num.toString()), {
+                correlationId: correlationId,
+                replyTo: q.queue
+            });
         });
     });
 });
 
-function fibonacci(n) {
-    if (n == 0 || n == 1)
-        return n;
-    else
-        return fibonacci(n - 1) + fibonacci(n - 2);
+function generateUuid() {
+    return Math.random().toString() +
+        Math.random().toString() +
+        Math.random().toString();
 }
