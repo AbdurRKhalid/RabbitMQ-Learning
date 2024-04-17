@@ -14,3 +14,6 @@ So, we can add following:
 
 here 'rpc_queue' is the name of the queue, and second one is content and 'queue_name' is the name of the queue to which the reply would be sent.
 This is a basic idea but not that efficient, because this does not handle the case to identify which request was from which client.
+
+## Correlation Id
+We can add a correlation ID specific to a client, and this correlation Id would be know, if this is not know we can simply ignore or discard this on the consumer end.
